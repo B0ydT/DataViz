@@ -1,0 +1,66 @@
+---
+title: "tidytuesday 2022-08-09"
+self-contained: true
+---
+
+## 
+
+```{r setup}
+library(ggplot2)
+library(tidyverse)
+library(tidytuesdayR)
+library(countrycode)
+```
+
+```{r}
+tuesdata <- tt_load("2022-08-09")
+wheels <- tuesdata$wheels
+
+head(wheels)
+```
+
+```{r}
+wheels <- wheels |> 
+    mutate(region = countryname(country, destination = "region"),
+           region = case_when(
+             country == "Phillippines" ~ "East Asia & Pacific",
+             country == "Dubai" ~ "Middle East & North Africa",
+             TRUE ~ region),
+           diameter = replace_na(diameter, mean(diameter, na.rm = TRUE)))
+```
+
+```{r, fig.width=7, fig.height=7, fig.alt="Scatter plot of relationship between ferris wheel height and diameter by region and opening date"}
+wheelPlot <- wheels |> 
+    filter(opened > "1975-01-01") |> 
+    ggplot(aes(x = opened, 
+               y = height, 
+               color = region,
+               fill = region)) +
+    geom_point(aes(size = diameter),
+               alpha = 0.75) +
+    theme_bw() +
+    theme(legend.position = "bottom", 
+          legend.box = "vertical", 
+          legend.box.just = "left") +
+    geom_smooth(method = "lm") + 
+    scale_color_viridis_d() +
+    scale_fill_viridis_d() +
+    guides(color = guide_legend(nrow=2,
+                                byrow=TRUE,
+                                title = "Region"),
+           fill = guide_legend(nrow=2,
+                               byrow=TRUE,
+                               title = "Region"),
+           size = guide_legend(title = "Wheel Diameter")) +
+    xlab("Opening Date") +
+    ylab("Wheel Height") +
+    ggtitle("Ferris Wheel Height and Diameter by Region and Opening Date From 1975")
+
+ggsave("Out/2022-08-09-final.jpg", plot = wheelPlot)
+
+wheelPlot
+```
+
+```{r}
+sessionInfo()
+```
