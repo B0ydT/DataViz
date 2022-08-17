@@ -1,0 +1,102 @@
+---
+title: "tidytuesday 2022-08-16"
+self-contained: true
+format: 
+  html:
+    df-print: kable
+---
+
+## Setup
+
+```{r setup, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(tidyverse)
+library(tidytuesdayR)
+library(magrittr)
+library(showtext)
+library(hrbrthemes)
+library(wesanderson)
+```
+
+```{r}
+font_add_google("Roboto Condensed")
+showtext_auto()
+```
+
+## Load Data
+
+```{r}
+tuesdata <- tt_load('2022-08-16')
+
+psych_stats <- tuesdata$psych_stats
+head(psych_stats)
+```
+
+## Transform Data
+
+```{r}
+psych_stats <- psych_stats |> 
+    filter(str_count(question, "/") <=1) |> 
+    separate("question", into = c("One", "Two"), sep = "/", remove = FALSE) |> 
+    mutate(Score = ifelse(One == personality, 1, 0)) |> 
+    select(-c(One, Two, personality, avg_rating, rank, 
+              rating_sd, number_ratings)) |> 
+    pivot_wider(names_from = question, 
+                values_from = Score,
+                values_fn = sum)
+```
+
+## Dimension Reduction
+
+```{r}
+factorRes <- select(psych_stats, -c(char_id, char_name, uni_id, uni_name)) |> 
+    factanal(factors = 5, scores = "regression")
+
+scores <- factorRes$scores |> 
+  set_colnames(c("Agreeableness","Openness","Conscientiousness", "Extraversion", 
+                 "Narcicism")) |> 
+  cbind(select(psych_stats, c(char_id, char_name, uni_id, uni_name)))
+
+head(scores)
+```
+
+## Produce Plot
+
+```{r, fig.height=7, fig.width=7, fig.alt="Estimates of Big Five personality traits of flawed protagonists and anti-heroes"}
+
+charList <- c("Walter White", "Ted Mosby", "Dr. Gregory House",
+              "Gaius Baltar", "Selina Meyer", "Loki")
+
+persPlot <- scores |> 
+    mutate(across(1:5, ~ .x + abs(min(.x)))) |> 
+    filter(char_name %in% charList) |> 
+    pivot_longer(1:5, 
+                 names_to = "Trait", 
+                 values_to = "Value") |> 
+    ggplot(aes(x = Trait, 
+               y = Value, 
+               fill = Trait)) + 
+    geom_col() + 
+    facet_wrap(~char_name) + 
+    theme_ipsum_rc() + 
+    coord_polar() + 
+    scale_fill_ipsum(guide = guide_legend(nrow = 2)) +
+    theme(legend.position = "bottom", 
+          axis.ticks = element_blank(), 
+          axis.text.x = element_blank(),
+          axis.text.y = element_blank(),
+          plot.margin = margin(l=0, t = 30, b = 30),
+          axis.title.x = element_blank(),
+          axis.title.y = element_blank(),
+          plot.background = element_rect(fill = "white", color = NA),
+          panel.spacing = unit(0, "lines")) +
+    ggtitle(label = "Personality Traits of Troubled Protagonists", 
+            subtitle = "Big Five metrics estimated from openpsychometrics.org data")
+
+
+ggsave("Out/2022-08-16-final.svg", persPlot)
+```
+
+```{r}
+sessionInfo()
+```
