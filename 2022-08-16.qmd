@@ -15,7 +15,7 @@ library(tidytuesdayR)
 library(magrittr)
 library(showtext)
 library(hrbrthemes)
-library(wesanderson)
+library(rsvg)
 ```
 
 ```{r}
@@ -93,8 +93,9 @@ persPlot <- scores |>
     ggtitle(label = "Personality Traits of Troubled Protagonists", 
             subtitle = "Big Five metrics estimated from openpsychometrics.org data")
 
-
-ggsave("Out/2022-08-16-final.svg", persPlot)
+tmp <- tempfile()
+ggsave(tmp, persPlot, device = "svg")
+rsvg_png(tmp, "Out/2022-08-16.png")
 ```
 
 ```{r}
