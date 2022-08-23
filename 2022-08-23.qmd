@@ -1,0 +1,106 @@
+---
+title: "tidytuesday 2022-08-23"
+self-contained: true
+format: 
+  html:
+    df-print: kable
+---
+
+## Setup
+
+```{r setup, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(tidyverse)
+library(lubridate)
+library(hrbrthemes)
+library(showtext)
+library(rsvg)
+library(gganimate)
+```
+
+```{r}
+font_add_google("Roboto Condensed")
+showtext_auto()
+```
+
+## Load Data
+
+chip_dataset.csv downloaded from [Vercel](https://chip-dataset.vercel.app/). 
+
+Redistribution of the dataset is not permitted.
+
+```{r}
+chips <- read.csv("Data/chip_dataset.csv")
+```
+
+## Clean Data
+
+```{r}
+chips <- chips |>
+  mutate(Date = as_date(Release.Date)) |> 
+  filter(Foundry != "Unknown" &
+               !is.na(Date) &
+               !is.na(Transistors..million.) &
+           Type == "GPU") 
+```
+
+## Get Regression Lines
+
+```{r}
+chipMod <- chips |> 
+  mutate(Date = as.numeric(Date)) |> 
+  glm(Transistors..million. ~ Date + Foundry,
+      family = "poisson",
+      data = _)
+
+predInput <- chips |> 
+    mutate(Foundry = factor(Foundry),
+          Date = as.numeric(Date)) |> 
+    group_by(Foundry) |> 
+    summarise(min = min(Date),
+              max = max(Date)) |> 
+    pivot_longer(cols = c("min", "max"),
+                 values_to = "Date")
+
+chipPreds <- predict(chipMod, 
+                     newdata = predInput[,c(3,1)], 
+                     type = "response") |> 
+  data.frame() |> 
+  cbind(predInput) |> 
+  rename(Transistors..million. = 1) |> 
+  mutate(Date = as_date(Date))
+```
+
+## Produce Plot
+
+```{r}
+linePlot <- chips |> 
+    ggplot(aes(x = Date, 
+               y = Transistors..million., 
+               color = Foundry)) +
+    geom_point(aes(group = seq_along(Date)),
+               alpha = 0.5) +
+    geom_line(data = chipPreds, size = 0.8) +
+    scale_y_log10() +
+    theme_ipsum_rc(axis_title_size = "12") +
+    scale_color_viridis_d() +
+    theme(legend.position = "bottom") +
+    xlab("Release Date") +
+    ylab("Transistors (Millions)") +
+    ggtitle(label = "GPU Transistor Count by Release Date",
+            subtitle = "Data from https://chip-dataset.vercel.app/") +
+    transition_reveal(Date)
+```
+
+## Save Plot
+
+```{r, fig.height=7, fig.width=7, warning=FALSE}
+animate(linePlot, end_pause = 10) |> 
+  anim_save("Out/2022-08-23.gif", animation = _)
+```
+
+## Session Info
+
+```{r}
+sessionInfo()
+```
