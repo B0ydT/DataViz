@@ -1,0 +1,94 @@
+---
+title: "tidytuesday 2022-08-30"
+self-contained: true
+format: 
+  html:
+    df-print: kable
+---
+
+## Setup
+
+```{r setup, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(tidyverse)
+library(hrbrthemes)
+library(showtext)
+library(urbnmapr)
+library(rsvg)
+```
+
+```{r}
+font_add_google("Roboto Condensed")
+showtext_auto()
+```
+
+## Load Data
+
+```{r}
+tuesdata <- tidytuesdayR::tt_load('2022-08-30')
+pell <- tuesdata$pell
+```
+
+## Clean Data
+
+```{r}
+stateSF <- get_urbn_map(map = "territories_states", sf = TRUE)
+
+pellSF <- pell |> 
+    filter(YEAR == 2017) |> 
+    group_by(STATE) |> 
+    summarise(sumAward = sum(AWARD),
+              sumRecipient = sum(RECIPIENT)) |> 
+    rename(state_abbv = STATE) |> 
+    full_join(stateMap, by = "state_abbv") |> 
+    filter(!is.na(state_name))
+```
+
+## Produce Plot
+
+```{r}
+Plot <- pellSF %>%
+    ggplot(aes(geometry = geometry)) +
+    geom_sf(aes(fill = round(sumAward/1000000)),
+            color = "#F3EFE0", size = 0.25) +
+    geom_text_repel(aes(label = round(sumRecipient/1000)),  
+                    color = "#AA336A", 
+                    stat = "sf_coordinates", 
+                    force_pull = 100, 
+                    nudge_x = 5000,
+                    min.segment.length = 0, 
+                    seed = 1) +
+    theme_ipsum_rc() +
+    theme(panel.background = element_rect(fill = "#F5F3E5", 
+                                          linetype = 0),
+          plot.background = element_rect(fill = "#F5F3E5", 
+                                         linetype = 0),
+          legend.position = "bottom",
+          axis.title.x=element_blank(),
+          axis.text.x = element_blank(),
+          axis.ticks.x = element_blank(),
+          axis.title.y = element_blank(),
+          axis.text.y = element_blank(),
+          axis.ticks.y = element_blank(),
+          axis.line.x = element_blank()) +
+    scale_fill_continuous(high = "#132B43", 
+                          low = "#56B1F7", 
+                          name = "Total Pell Grant Funding (Million USD$)")  +
+    labs(title = "2017 Pell Grants by State",
+         subtitle = "States are coloured by total funding recieved and labeled with the number of 
+recipients, counted in thousands.")
+```
+
+## Save Plot
+
+```{r, fig.height=7, fig.width=7, warning=FALSE}
+tmp <- tempfile()
+ggsave(tmp, Plot, device = "svg", width = 7, height = 7)
+rsvg_png(tmp, "Out/2022-08-30.png")
+```
+
+## Session Info
+
+```{r}
+sessionInfo()
+```
