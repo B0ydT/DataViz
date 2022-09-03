@@ -1,5 +1,22 @@
 project:
-  title: "tidytuesday"
+  type: book
 
+book:
+  title: "DataViz Portfolio"
+  author: "Boyd Tarlinton"
+  number-sections: false
+  chapters:
+    - index.qmd
+    - part: "TidyTuesday Projects"
+      chapters:
+        - 2022-08-30.qmd
+        - 2022-08-23.qmd
+        - 2022-08-16.qmd
+        - 2022-08-09.qmd
 
-
+format:
+  html:
+    theme: cosmo
+    df-print: kable
+    toc: true
+    number-sections: false

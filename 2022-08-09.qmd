@@ -1,23 +1,26 @@
 ---
-title: "tidytuesday 2022-08-09"
-self-contained: true
+title: "2022 Week 32: Ferris Wheels"
 ---
 
-## 
+## Setup
 
-```{r setup}
+```{r setup, warning=FALSE, message=FALSE}
 library(ggplot2)
 library(tidyverse)
 library(tidytuesdayR)
 library(countrycode)
 ```
 
-```{r}
+## Load Data
+
+```{r, warning=FALSE, message=FALSE}
 tuesdata <- tt_load("2022-08-09")
 wheels <- tuesdata$wheels
 
 head(wheels)
 ```
+
+## Clean Data
 
 ```{r}
 wheels <- wheels |> 
@@ -28,6 +31,8 @@ wheels <- wheels |>
              TRUE ~ region),
            diameter = replace_na(diameter, mean(diameter, na.rm = TRUE)))
 ```
+
+## Plot
 
 ```{r, fig.width=7, fig.height=7, fig.alt="Scatter plot of relationship between ferris wheel height and diameter by region and opening date"}
 wheelPlot <- wheels |> 

@@ -1,9 +1,5 @@
 ---
-title: "tidytuesday 2022-08-16"
-self-contained: true
-format: 
-  html:
-    df-print: kable
+title: "2022 Week 33: Psychometrics"
 ---
 
 ## Setup
@@ -18,14 +14,14 @@ library(hrbrthemes)
 library(rsvg)
 ```
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 font_add_google("Roboto Condensed")
 showtext_auto()
 ```
 
 ## Load Data
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 tuesdata <- tt_load('2022-08-16')
 
 psych_stats <- tuesdata$psych_stats
@@ -60,7 +56,7 @@ scores <- factorRes$scores |>
 head(scores)
 ```
 
-## Produce Plot
+## Plot
 
 ```{r, fig.height=7, fig.width=7, fig.alt="Estimates of Big Five personality traits of flawed protagonists and anti-heroes"}
 
@@ -96,6 +92,8 @@ persPlot <- scores |>
 tmp <- tempfile()
 ggsave(tmp, persPlot, device = "svg")
 rsvg_png(tmp, "Out/2022-08-16.png")
+
+persPlot
 ```
 
 ```{r}

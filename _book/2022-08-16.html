@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>DataViz Portfolio - 4&nbsp; 2022 Week 32: Ferris Wheels</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./2022-08-09.html" rel="next">
+<link href="./2022-08-23.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">2022 Week 32: Ferris Wheels</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">DataViz Portfolio</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">DataViz Portfolio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+    <div class="sidebar-item-container"> 
+        <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">TidyTuesday Projects</a>
+      <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+        <i class="bi bi-chevron-right ms-2"></i>
+      </a>
+    </div>
+    <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2022-08-30.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">TidyTuesday 2022-08-30</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2022-08-23.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">TidyTuesday 2022-08-23</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2022-08-16.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">2022 Week 32: Ferris Wheels</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./2022-08-09.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">2022-08-09</span></a>
+  </div>
+</li>
+    </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup"> <span class="header-section-number">4.1</span> Setup</a></li>
+  <li><a href="#load-data" id="toc-load-data" class="nav-link" data-scroll-target="#load-data"> <span class="header-section-number">4.2</span> Load Data</a></li>
+  <li><a href="#transform-data" id="toc-transform-data" class="nav-link" data-scroll-target="#transform-data"> <span class="header-section-number">4.3</span> Transform Data</a></li>
+  <li><a href="#dimension-reduction" id="toc-dimension-reduction" class="nav-link" data-scroll-target="#dimension-reduction"> <span class="header-section-number">4.4</span> Dimension Reduction</a></li>
+  <li><a href="#produce-plot" id="toc-produce-plot" class="nav-link" data-scroll-target="#produce-plot"> <span class="header-section-number">4.5</span> Produce Plot</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">2022 Week 32: Ferris Wheels</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="setup" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="setup"><span class="header-section-number">4.1</span> Setup</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytuesdayR)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(showtext)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(hrbrthemes)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rsvg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">font_add_google</span>(<span class="st">"Roboto Condensed"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">showtext_auto</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="load-data" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="load-data"><span class="header-section-number">4.2</span> Load Data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>tuesdata <span class="ot">&lt;-</span> <span class="fu">tt_load</span>(<span class="st">'2022-08-16'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Downloading file 1 of 3: `characters.csv`
+    Downloading file 2 of 3: `myers_briggs.csv`
+    Downloading file 3 of 3: `psych_stats.csv`</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>psych_stats <span class="ot">&lt;-</span> tuesdata<span class="sc">$</span>psych_stats</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(psych_stats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-sm table-striped">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 11%">
+<col style="width: 5%">
+<col style="width: 7%">
+<col style="width: 23%">
+<col style="width: 13%">
+<col style="width: 8%">
+<col style="width: 3%">
+<col style="width: 7%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">char_id</th>
+<th style="text-align: left;">char_name</th>
+<th style="text-align: left;">uni_id</th>
+<th style="text-align: left;">uni_name</th>
+<th style="text-align: left;">question</th>
+<th style="text-align: left;">personality</th>
+<th style="text-align: right;">avg_rating</th>
+<th style="text-align: right;">rank</th>
+<th style="text-align: right;">rating_sd</th>
+<th style="text-align: right;">number_ratings</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">F2</td>
+<td style="text-align: left;">Monica Geller</td>
+<td style="text-align: left;">F</td>
+<td style="text-align: left;">Friends</td>
+<td style="text-align: left;">messy/neat</td>
+<td style="text-align: left;">neat</td>
+<td style="text-align: right;">95.7</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">11.7</td>
+<td style="text-align: right;">1079</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">F2</td>
+<td style="text-align: left;">Monica Geller</td>
+<td style="text-align: left;">F</td>
+<td style="text-align: left;">Friends</td>
+<td style="text-align: left;">disorganized/self-disciplined</td>
+<td style="text-align: left;">self-disciplined</td>
+<td style="text-align: right;">95.2</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">11.2</td>
+<td style="text-align: right;">1185</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">F2</td>
+<td style="text-align: left;">Monica Geller</td>
+<td style="text-align: left;">F</td>
+<td style="text-align: left;">Friends</td>
+<td style="text-align: left;">diligent/lazy</td>
+<td style="text-align: left;">diligent</td>
+<td style="text-align: right;">93.9</td>
+<td style="text-align: right;">87</td>
+<td style="text-align: right;">10.4</td>
+<td style="text-align: right;">1166</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">F2</td>
+<td style="text-align: left;">Monica Geller</td>
+<td style="text-align: left;">F</td>
+<td style="text-align: left;">Friends</td>
+<td style="text-align: left;">on-time/tardy</td>
+<td style="text-align: left;">on-time</td>
+<td style="text-align: right;">93.8</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">14.3</td>
+<td style="text-align: right;">236</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">F2</td>
+<td style="text-align: left;">Monica Geller</td>
+<td style="text-align: left;">F</td>
+<td style="text-align: left;">Friends</td>
+<td style="text-align: left;">competitive/cooperative</td>
+<td style="text-align: left;">competitive</td>
+<td style="text-align: right;">93.6</td>
+<td style="text-align: right;">56</td>
+<td style="text-align: right;">13.4</td>
+<td style="text-align: right;">1168</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">F2</td>
+<td style="text-align: left;">Monica Geller</td>
+<td style="text-align: left;">F</td>
+<td style="text-align: left;">Friends</td>
+<td style="text-align: left;">scheduled/spontaneous</td>
+<td style="text-align: left;">scheduled</td>
+<td style="text-align: right;">93.4</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: right;">14.5</td>
+<td style="text-align: right;">1173</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="transform-data" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="transform-data"><span class="header-section-number">4.3</span> Transform Data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>psych_stats <span class="ot">&lt;-</span> psych_stats <span class="sc">|&gt;</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="fu">str_count</span>(question, <span class="st">"/"</span>) <span class="sc">&lt;=</span><span class="dv">1</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">separate</span>(<span class="st">"question"</span>, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"One"</span>, <span class="st">"Two"</span>), <span class="at">sep =</span> <span class="st">"/"</span>, <span class="at">remove =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Score =</span> <span class="fu">ifelse</span>(One <span class="sc">==</span> personality, <span class="dv">1</span>, <span class="dv">0</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(One, Two, personality, avg_rating, rank, </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>              rating_sd, number_ratings)) <span class="sc">|&gt;</span> </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> question, </span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">values_from =</span> Score,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">values_fn =</span> sum)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="dimension-reduction" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="dimension-reduction"><span class="header-section-number">4.4</span> Dimension Reduction</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>factorRes <span class="ot">&lt;-</span> <span class="fu">select</span>(psych_stats, <span class="sc">-</span><span class="fu">c</span>(char_id, char_name, uni_id, uni_name)) <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">factanal</span>(<span class="at">factors =</span> <span class="dv">5</span>, <span class="at">scores =</span> <span class="st">"regression"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">&lt;-</span> factorRes<span class="sc">$</span>scores <span class="sc">|&gt;</span> </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_colnames</span>(<span class="fu">c</span>(<span class="st">"Agreeableness"</span>,<span class="st">"Openness"</span>,<span class="st">"Conscientiousness"</span>, <span class="st">"Extraversion"</span>, </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Narcicism"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(<span class="fu">select</span>(psych_stats, <span class="fu">c</span>(char_id, char_name, uni_id, uni_name)))</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(scores)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-sm table-striped">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 10%">
+<col style="width: 16%">
+<col style="width: 12%">
+<col style="width: 10%">
+<col style="width: 7%">
+<col style="width: 14%">
+<col style="width: 6%">
+<col style="width: 8%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">Agreeableness</th>
+<th style="text-align: right;">Openness</th>
+<th style="text-align: right;">Conscientiousness</th>
+<th style="text-align: right;">Extraversion</th>
+<th style="text-align: right;">Narcicism</th>
+<th style="text-align: left;">char_id</th>
+<th style="text-align: left;">char_name</th>
+<th style="text-align: left;">uni_id</th>
+<th style="text-align: left;">uni_name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0.2599155</td>
+<td style="text-align: right;">-0.4579260</td>
+<td style="text-align: right;">0.3571530</td>
+<td style="text-align: right;">1.4393580</td>
+<td style="text-align: right;">-1.0757393</td>
+<td style="text-align: left;">F2</td>
+<td style="text-align: left;">Monica Geller</td>
+<td style="text-align: left;">F</td>
+<td style="text-align: left;">Friends</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.2518833</td>
+<td style="text-align: right;">1.9207419</td>
+<td style="text-align: right;">-0.0626697</td>
+<td style="text-align: right;">1.1891392</td>
+<td style="text-align: right;">-1.5597640</td>
+<td style="text-align: left;">F1</td>
+<td style="text-align: left;">Rachel Green</td>
+<td style="text-align: left;">F</td>
+<td style="text-align: left;">Friends</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0.6608430</td>
+<td style="text-align: right;">0.7265587</td>
+<td style="text-align: right;">-1.1785029</td>
+<td style="text-align: right;">-0.1903910</td>
+<td style="text-align: right;">0.0073856</td>
+<td style="text-align: left;">F5</td>
+<td style="text-align: left;">Chandler Bing</td>
+<td style="text-align: left;">F</td>
+<td style="text-align: left;">Friends</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.8283600</td>
+<td style="text-align: right;">2.0439851</td>
+<td style="text-align: right;">-0.1671717</td>
+<td style="text-align: right;">-1.0484506</td>
+<td style="text-align: right;">-1.4319908</td>
+<td style="text-align: left;">F4</td>
+<td style="text-align: left;">Joey Tribbiani</td>
+<td style="text-align: left;">F</td>
+<td style="text-align: left;">Friends</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">1.1395901</td>
+<td style="text-align: right;">1.7388233</td>
+<td style="text-align: right;">-0.0116502</td>
+<td style="text-align: right;">-0.6018825</td>
+<td style="text-align: right;">0.7415672</td>
+<td style="text-align: left;">F3</td>
+<td style="text-align: left;">Phoebe Buffay</td>
+<td style="text-align: left;">F</td>
+<td style="text-align: left;">Friends</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">-0.6986759</td>
+<td style="text-align: right;">-1.2381315</td>
+<td style="text-align: right;">-1.7009218</td>
+<td style="text-align: right;">0.9037070</td>
+<td style="text-align: right;">-0.0672627</td>
+<td style="text-align: left;">F6</td>
+<td style="text-align: left;">Ross Geller</td>
+<td style="text-align: left;">F</td>
+<td style="text-align: left;">Friends</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="produce-plot" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="produce-plot"><span class="header-section-number">4.5</span> Produce Plot</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>charList <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Walter White"</span>, <span class="st">"Ted Mosby"</span>, <span class="st">"Dr. Gregory House"</span>,</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>              <span class="st">"Gaius Baltar"</span>, <span class="st">"Selina Meyer"</span>, <span class="st">"Loki"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>persPlot <span class="ot">&lt;-</span> scores <span class="sc">|&gt;</span> </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="sc">~</span> .x <span class="sc">+</span> <span class="fu">abs</span>(<span class="fu">min</span>(.x)))) <span class="sc">|&gt;</span> </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(char_name <span class="sc">%in%</span> charList) <span class="sc">|&gt;</span> </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">names_to =</span> <span class="st">"Trait"</span>, </span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">values_to =</span> <span class="st">"Value"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Trait, </span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>               <span class="at">y =</span> Value, </span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>               <span class="at">fill =</span> Trait)) <span class="sc">+</span> </span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>() <span class="sc">+</span> </span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>char_name) <span class="sc">+</span> </span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_ipsum_rc</span>() <span class="sc">+</span> </span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_polar</span>() <span class="sc">+</span> </span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_ipsum</span>(<span class="at">guide =</span> <span class="fu">guide_legend</span>(<span class="at">nrow =</span> <span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>, </span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(), </span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>          <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="at">l=</span><span class="dv">0</span>, <span class="at">t =</span> <span class="dv">30</span>, <span class="at">b =</span> <span class="dv">30</span>),</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>          <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel.spacing =</span> <span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">"lines"</span>)) <span class="sc">+</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="at">label =</span> <span class="st">"Personality Traits of Troubled Protagonists"</span>, </span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>            <span class="at">subtitle =</span> <span class="st">"Big Five metrics estimated from openpsychometrics.org data"</span>)</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> <span class="fu">tempfile</span>()</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(tmp, persPlot, <span class="at">device =</span> <span class="st">"svg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Saving 7 x 7 in image</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rsvg_png</span>(tmp, <span class="st">"Out/2022-08-16.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>R version 4.2.1 (2022-06-23 ucrt)
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+Running under: Windows 10 x64 (build 19043)
+
+Matrix products: default
+
+locale:
+[1] LC_COLLATE=English_Australia.utf8  LC_CTYPE=English_Australia.utf8   
+[3] LC_MONETARY=English_Australia.utf8 LC_NUMERIC=C                      
+[5] LC_TIME=English_Australia.utf8    
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] rsvg_2.3.1         hrbrthemes_0.8.0   showtext_0.9-5     showtextdb_3.0    
+ [5] sysfonts_0.8.8     magrittr_2.0.3     tidytuesdayR_1.0.2 forcats_0.5.1     
+ [9] stringr_1.4.0      dplyr_1.0.9        purrr_0.3.4        readr_2.1.2       
+[13] tidyr_1.2.0        tibble_3.1.7       tidyverse_1.3.1    ggplot2_3.3.6     
+
+loaded via a namespace (and not attached):
+ [1] httr_1.4.3        bit64_4.0.5       vroom_1.5.7       jsonlite_1.8.0   
+ [5] modelr_0.1.8      assertthat_0.2.1  highr_0.9         selectr_0.4-2    
+ [9] cellranger_1.1.0  yaml_2.3.5        gdtools_0.2.4     Rttf2pt1_1.3.10  
+[13] pillar_1.7.0      backports_1.4.1   glue_1.6.2        extrafontdb_1.0  
+[17] digest_0.6.29     rvest_1.0.2       colorspace_2.0-3  htmltools_0.5.2  
+[21] pkgconfig_2.0.3   broom_1.0.0       haven_2.5.0       scales_1.2.0     
+[25] svglite_2.1.0     tzdb_0.3.0        farver_2.1.0      generics_0.1.2   
+[29] usethis_2.1.6     ellipsis_0.3.2    withr_2.5.0       cli_3.3.0        
+[33] crayon_1.5.1      readxl_1.4.0      evaluate_0.15     fs_1.5.2         
+[37] fansi_1.0.3       xml2_1.3.3        textshaping_0.3.6 tools_4.2.1      
+[41] hms_1.1.1         lifecycle_1.0.1   munsell_0.5.0     reprex_2.0.1     
+[45] compiler_4.2.1    systemfonts_1.0.4 rlang_1.0.4       grid_4.2.1       
+[49] rstudioapi_0.13   htmlwidgets_1.5.4 labeling_0.4.2    rmarkdown_2.14   
+[53] gtable_0.3.0      DBI_1.1.3         curl_4.3.2        R6_2.5.1         
+[57] lubridate_1.8.0   knitr_1.39        fastmap_1.1.0     bit_4.0.4        
+[61] extrafont_0.18    utf8_1.2.2        ragg_1.2.2        stringi_1.7.6    
+[65] parallel_4.2.1    Rcpp_1.0.8.3      vctrs_0.4.1       dbplyr_2.2.1     
+[69] tidyselect_1.1.2  xfun_0.31        </code></pre>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    toggleBodyColorMode(window.document.querySelector("link#quarto-bootstrap"));
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./2022-08-23.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">TidyTuesday 2022-08-23</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./2022-08-09.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">2022-08-09</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

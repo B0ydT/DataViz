@@ -1,9 +1,5 @@
 ---
-title: "tidytuesday 2022-08-30"
-self-contained: true
-format: 
-  html:
-    df-print: kable
+title: "2022 Week 35: Pell Grants"
 ---
 
 ## Setup
@@ -15,16 +11,17 @@ library(hrbrthemes)
 library(showtext)
 library(urbnmapr)
 library(rsvg)
+library(ggrepel)
 ```
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 font_add_google("Roboto Condensed")
 showtext_auto()
 ```
 
 ## Load Data
 
-```{r}
+```{r, message=FALSE}
 tuesdata <- tidytuesdayR::tt_load('2022-08-30')
 pell <- tuesdata$pell
 ```
@@ -40,14 +37,14 @@ pellSF <- pell |>
     summarise(sumAward = sum(AWARD),
               sumRecipient = sum(RECIPIENT)) |> 
     rename(state_abbv = STATE) |> 
-    full_join(stateMap, by = "state_abbv") |> 
+    full_join(stateSF, by = "state_abbv") |> 
     filter(!is.na(state_name))
 ```
 
-## Produce Plot
+## Plot
 
-```{r}
-Plot <- pellSF %>%
+```{r, fig.height=7, fig.width=7, warning=FALSE}
+pellPlot <- pellSF %>%
     ggplot(aes(geometry = geometry)) +
     geom_sf(aes(fill = round(sumAward/1000000)),
             color = "#F3EFE0", size = 0.25) +
@@ -77,14 +74,12 @@ Plot <- pellSF %>%
     labs(title = "2017 Pell Grants by State",
          subtitle = "States are coloured by total funding recieved and labeled with the number of 
 recipients, counted in thousands.")
-```
 
-## Save Plot
-
-```{r, fig.height=7, fig.width=7, warning=FALSE}
 tmp <- tempfile()
-ggsave(tmp, Plot, device = "svg", width = 7, height = 7)
+ggsave(tmp, pellPlot, device = "svg", width = 7, height = 7)
 rsvg_png(tmp, "Out/2022-08-30.png")
+
+pellPlot
 ```
 
 ## Session Info

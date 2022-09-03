@@ -1,9 +1,5 @@
 ---
-title: "tidytuesday 2022-08-23"
-self-contained: true
-format: 
-  html:
-    df-print: kable
+title: "2022 Week 34: Moore's Law"
 ---
 
 ## Setup
@@ -18,7 +14,7 @@ library(rsvg)
 library(gganimate)
 ```
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 font_add_google("Roboto Condensed")
 showtext_auto()
 ```
@@ -29,7 +25,7 @@ chip_dataset.csv downloaded from [Vercel](https://chip-dataset.vercel.app/).
 
 Redistribution of the dataset is not permitted.
 
-```{r}
+```{r, message=FALSE}
 chips <- read.csv("Data/chip_dataset.csv")
 ```
 
@@ -71,9 +67,9 @@ chipPreds <- predict(chipMod,
   mutate(Date = as_date(Date))
 ```
 
-## Produce Plot
+## Plot
 
-```{r}
+```{r, fig.height=7, fig.width=7, warning=FALSE}
 linePlot <- chips |> 
     ggplot(aes(x = Date, 
                y = Transistors..million., 
@@ -90,14 +86,16 @@ linePlot <- chips |>
     ggtitle(label = "GPU Transistor Count by Release Date",
             subtitle = "Data from https://chip-dataset.vercel.app/") +
     transition_reveal(Date)
-```
 
-## Save Plot
-
-```{r, fig.height=7, fig.width=7, warning=FALSE}
-animate(linePlot, end_pause = 10) |> 
+animate(linePlot, end_pause = 10, 
+        height = 7, 
+        width = 7, 
+        units = "in", 
+        res = 75) |> 
   anim_save("Out/2022-08-23.gif", animation = _)
 ```
+
+![Final Plot](Out/2022-08-23.gif)]
 
 ## Session Info
 
