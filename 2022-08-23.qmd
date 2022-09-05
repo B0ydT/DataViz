@@ -95,7 +95,7 @@ animate(linePlot, end_pause = 10,
   anim_save("Out/2022-08-23.gif", animation = _)
 ```
 
-![Final Plot](Out/2022-08-23.gif)]
+![Final Plot](Out/2022-08-23.gif)
 
 ## Session Info
 
