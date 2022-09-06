@@ -79,8 +79,9 @@ tmp <- tempfile()
 ggsave(tmp, pellPlot, device = "svg", width = 7, height = 7)
 rsvg_png(tmp, "Out/2022-08-30.png")
 
-pellPlot
 ```
+
+![Final Plot](Out/2022-08-30.png)
 
 ## Session Info
 

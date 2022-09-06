@@ -92,9 +92,9 @@ persPlot <- scores |>
 tmp <- tempfile()
 ggsave(tmp, persPlot, device = "svg")
 rsvg_png(tmp, "Out/2022-08-16.png")
-
-persPlot
 ```
+
+![Final Plot](Out/2022-08-16.png)
 
 ```{r}
 sessionInfo()

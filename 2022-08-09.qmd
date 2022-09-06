@@ -63,9 +63,9 @@ wheelPlot <- wheels |>
     ggtitle("Ferris Wheel Height and Diameter by Region and Opening Date From 1975")
 
 ggsave("Out/2022-08-09-final.jpg", plot = wheelPlot)
-
-wheelPlot
 ```
+
+![Final Plot](Out/2022-08-09-final.jpg)
 
 ```{r}
 sessionInfo()
