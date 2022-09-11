@@ -14,6 +14,18 @@ book:
         - 2022-08-23.qmd
         - 2022-08-16.qmd
         - 2022-08-09.qmd
+  page-footer:
+    right:
+      - text: "{{< fa brands twitter  size=large >}}"
+        href: https://twitter.com/bioboyd
+      - text: "{{< fa brands linkedin  size=large >}}"
+        href: https://www.linkedin.com/in/boyd-tarlinton/
+      - text: "{{< fa brands github  size=large >}}"
+        href: https://github.com/B0ydT/
+      - text: "{{< fa at  size=large >}}"
+        href: mailto:b2.tarlinton@qut.edu.au
+      - text: "{{< fa brands orcid  size=large >}}"
+        href: https://orcid.org/0000-0002-4146-7083
 
 format:
   html:
