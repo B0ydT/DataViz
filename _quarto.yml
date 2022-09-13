@@ -26,6 +26,9 @@ book:
         href: mailto:b2.tarlinton@qut.edu.au
       - text: "{{< fa brands orcid  size=large >}}"
         href: https://orcid.org/0000-0002-4146-7083
+    left: 
+      - text: "Copyright 2020, Boyd Tarlinton, CC BY 4.0"
+        href: LICENSE.md
 
 format:
   html:

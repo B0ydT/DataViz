@@ -1,0 +1,63 @@
+---
+title: "2022 Week 36: Lego Sets"
+---
+
+## Setup
+
+```{r setup, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(tidyverse)
+library(hrbrthemes)
+library(showtext)
+library(rsvg)
+```
+
+```{r, warning=FALSE, message=FALSE}
+font_add_google("Roboto Condensed")
+showtext_auto()
+```
+
+## Load Data
+
+```{r, message=FALSE}
+sets <- readr::read_csv(
+  'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-09-06/sets.csv.gz')
+
+themes <- readr::read_csv(
+  'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-09-06/themes.csv.gz')
+```
+
+## Clean Data
+
+```{r}
+lego <- left_join(sets, themes, by = c("theme_id" = "id"))
+```
+
+## Plot
+
+```{r, fig.height=7, fig.width=7, warning=FALSE}
+legoPlot <- lego |> 
+    filter(num_parts > 0) |> 
+    arrange(year) |> 
+    group_by(name.x) |> 
+    slice(1) |> 
+    ungroup() |> 
+    arrange(year) |> 
+    ggplot(aes(x = year, y = num_parts, color = name.y)) +
+    geom_point() +
+    scale_y_log10() +
+    scale_colour_viridis_d(guide = "none")
+
+tmp <- tempfile()
+ggsave(tmp, legoPlot, device = "svg", width = 7, height = 7)
+rsvg_png(tmp, "Out/2022-08-30.png")
+
+```
+
+![Final Plot](Out/2022-08-30.png)
+
+## Session Info
+
+```{r}
+sessionInfo()
+```
