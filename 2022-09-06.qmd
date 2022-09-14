@@ -10,6 +10,9 @@ library(tidyverse)
 library(hrbrthemes)
 library(showtext)
 library(rsvg)
+library(ggimage)
+library(cropcircles)
+library(ggrepel)
 ```
 
 ```{r, warning=FALSE, message=FALSE}
@@ -33,28 +36,46 @@ themes <- readr::read_csv(
 lego <- left_join(sets, themes, by = c("theme_id" = "id"))
 ```
 
-## Plot
+```{r}
+safe_image <- possibly(circle_crop, otherwise = NA)
 
-```{r, fig.height=7, fig.width=7, warning=FALSE}
-legoPlot <- lego |> 
+lego <- lego |> 
     filter(num_parts > 0) |> 
     arrange(year) |> 
     group_by(name.x) |> 
     slice(1) |> 
     ungroup() |> 
     arrange(year) |> 
-    ggplot(aes(x = year, y = num_parts, color = name.y)) +
-    geom_point() +
+    mutate(ATH = ifelse(num_parts >= cummax(num_parts), 
+                        TRUE, FALSE)) |> 
+    filter(ATH == TRUE) |> 
+    rowwise() |> 
+    mutate(img = safe_image(img_url))
+```
+
+## Plot
+
+```{r, fig.height=7, fig.width=7, warning=FALSE}
+legoPlot <- lego |> 
+    ggplot(aes(x = year, y = num_parts)) +
+    geom_line() +
+    geom_label_repel(aes(label = name.x, color = name.y), nudge_y = 75000, force = 1000,
+                     direction = "y") +
+    geom_image(aes(image = img), y = 1) +
+    geom_segment(aes(x = year, xend = year, y = 0, yend = num_parts, color = name.y)) +
     scale_y_log10() +
-    scale_colour_viridis_d(guide = "none")
+    ylim(0, 17500)+
+    scale_colour_viridis_d() +
+    theme_ipsum_rc() +
+    theme(legend.position = "bottom",
+          plot.background = element_rect(fill = "white", color = NA)) 
 
 tmp <- tempfile()
 ggsave(tmp, legoPlot, device = "svg", width = 7, height = 7)
-rsvg_png(tmp, "Out/2022-08-30.png")
-
+rsvg_png(tmp, "Out/2022-09-06.png")
 ```
 
-![Final Plot](Out/2022-08-30.png)
+![Final Plot](Out/2022-09-06.png)
 
 ## Session Info
 
