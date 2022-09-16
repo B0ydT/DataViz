@@ -10,6 +10,7 @@ book:
     - index.qmd
     - part: "TidyTuesday Projects"
       chapters:
+        - 2022-09-06.qmd
         - 2022-08-30.qmd
         - 2022-08-23.qmd
         - 2022-08-16.qmd

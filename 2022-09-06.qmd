@@ -1,6 +1,12 @@
 ---
-title: "2022 Week 36: Lego Sets"
+title: "2022 Week 36: LEGO Sets"
+execute: 
+  freeze: auto
 ---
+
+This week I eschewed a scientific format, and instead tried to create an 
+infographic that might be included in a LEGO magazine, complete with pictures 
+and bold colours.
 
 ## Setup
 
@@ -49,8 +55,20 @@ lego <- lego |>
     mutate(ATH = ifelse(num_parts >= cummax(num_parts), 
                         TRUE, FALSE)) |> 
     filter(ATH == TRUE) |> 
+    group_by(year) |> 
+    arrange(num_parts) |> 
+    slice(1) |> 
+    ungroup() |> 
+    mutate(yadj = rep(c(2500, -2500), length.out = 17),
+           yadj = yadj + 17500/80*(year-1949)) |> 
     rowwise() |> 
-    mutate(img = safe_image(img_url))
+    mutate(img = safe_image(img_url)) |> 
+    ungroup() |> 
+    group_by(is.na(img)) |> 
+    mutate(n = n(),
+           yadj = rep(c(1000, 6000, 9000), length.out = n),
+           yadj = yadj + num_parts,
+           yadj = ifelse(is.na(img), 0, yadj))
 ```
 
 ## Plot
@@ -59,16 +77,27 @@ lego <- lego |>
 legoPlot <- lego |> 
     ggplot(aes(x = year, y = num_parts)) +
     geom_line() +
-    geom_label_repel(aes(label = name.x, color = name.y), nudge_y = 75000, force = 1000,
-                     direction = "y") +
-    geom_image(aes(image = img), y = 1) +
-    geom_segment(aes(x = year, xend = year, y = 0, yend = num_parts, color = name.y)) +
-    scale_y_log10() +
-    ylim(0, 17500)+
+    geom_area(fill = "#DD1A21") +
+    geom_segment(aes(x = year, xend = year, y = num_parts, yend = yadj)) +
+    geom_image(aes(image = img, y = yadj, x = year), 
+               size = 0.12, inherit.aes = FALSE) +
+    ylim(0, 21000) +
     scale_colour_viridis_d() +
+    scale_x_continuous(expand = expansion(add = 9),
+                       breaks = seq(1950, 2020, by = 10)) +
     theme_ipsum_rc() +
     theme(legend.position = "bottom",
-          plot.background = element_rect(fill = "white", color = NA)) 
+          axis.text = element_text(colour = "black"),
+          axis.title.x = element_text(size = 14),
+          axis.title.y = element_text(size = 14),
+          plot.background = element_rect(fill = "#FFCD03", color = NA),
+          panel.grid.major = element_line(colour = "black"),
+          panel.grid.minor = element_blank()) +
+    xlab("Year of Release") +
+    ylab("Number of Parts") +
+    ggtitle("The Biggest and Best LEGO Sets (1949-2021)",
+            "A timeline of LEGO sets that set new recods for part numbers.
+Data from rebrickable.")
 
 tmp <- tempfile()
 ggsave(tmp, legoPlot, device = "svg", width = 7, height = 7)

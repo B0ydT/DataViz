@@ -10,6 +10,8 @@ My goal with TidyTuesday each week is to learn something new, and consequently I
 
 ::: {layout="[[50,-0.5,50,-0.5,50], [50,-0.5,50,-0.5,50]]"}
 
+[![LEGO Sets](Out/2022-09-06.png)](2022-09-06.qmd)
+
 [![Pell Grants](Out/2022-08-30.png)](2022-08-30.qmd)
 
 [![Moore's Law](Out/2022-08-23.gif)](2022-08-23.qmd)
