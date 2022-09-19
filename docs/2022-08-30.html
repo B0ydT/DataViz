@@ -238,7 +238,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(showtext)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(urbnmapr)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rsvg)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggtext)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">font_add_google</span>(<span class="st">"Roboto Condensed"</span>)</span>
@@ -302,17 +303,19 @@ old-style crs object detected; please recreate object with a recent sf::st_crs()
 <span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title.y =</span> <span class="fu">element_blank</span>(),</span>
 <span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
 <span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.line.x =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_continuous</span>(<span class="at">high =</span> <span class="st">"#132B43"</span>, </span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>                          <span class="at">low =</span> <span class="st">"#56B1F7"</span>, </span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>                          <span class="at">name =</span> <span class="st">"Total Pell Grant Funding (Million USD$)"</span>)  <span class="sc">+</span></span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"2017 Pell Grants by State"</span>,</span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"States are coloured by total funding recieved and labeled with the number of </span></span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="st">recipients, counted in thousands."</span>)</span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> <span class="fu">tempfile</span>()</span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(tmp, pellPlot, <span class="at">device =</span> <span class="st">"svg"</span>, <span class="at">width =</span> <span class="dv">7</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a><span class="fu">rsvg_png</span>(tmp, <span class="st">"Out/2022-08-30.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.line.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>          <span class="at">plot.subtitle =</span> <span class="fu">element_markdown</span>()) <span class="sc">+</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_continuous</span>(<span class="at">high =</span> <span class="st">"#132B43"</span>, </span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>                          <span class="at">low =</span> <span class="st">"#56B1F7"</span>, </span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>                          <span class="at">name =</span> <span class="st">"Total Pell Grant Funding (Million USD$)"</span>)  <span class="sc">+</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"2017 Pell Grants by State"</span>,</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>         <span class="at">subtitle =</span> <span class="st">"States are coloured by &lt;span style='color:#132B43;'&gt;total funding recieved&lt;/span&gt; and labeled with the &lt;span style='color:#AA336A;'&gt;number of &lt;br&gt;recipients&lt;/span&gt;, counted in thousands."</span>)</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">&lt;-</span> <span class="fu">tempfile</span>()</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(tmp, pellPlot, <span class="at">device =</span> <span class="st">"svg"</span>, <span class="at">width =</span> <span class="dv">7</span>, <span class="at">height =</span> <span class="dv">7</span>)</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a><span class="fu">rsvg_png</span>(tmp, <span class="st">"Out/2022-08-30.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -341,12 +344,12 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] ggrepel_0.9.1       rsvg_2.3.1          urbnmapr_0.0.0.9002
- [4] showtext_0.9-5      showtextdb_3.0      sysfonts_0.8.8     
- [7] hrbrthemes_0.8.0    forcats_0.5.2       stringr_1.4.1      
-[10] dplyr_1.0.9         purrr_0.3.4         readr_2.1.2        
-[13] tidyr_1.2.0         tibble_3.1.7        tidyverse_1.3.2    
-[16] ggplot2_3.3.6      
+ [1] ggtext_0.1.1        ggrepel_0.9.1       rsvg_2.3.1         
+ [4] urbnmapr_0.0.0.9002 showtext_0.9-5      showtextdb_3.0     
+ [7] sysfonts_0.8.8      hrbrthemes_0.8.0    forcats_0.5.2      
+[10] stringr_1.4.1       dplyr_1.0.9         purrr_0.3.4        
+[13] readr_2.1.2         tidyr_1.2.0         tibble_3.1.7       
+[16] tidyverse_1.3.2     ggplot2_3.3.6      
 
 loaded via a namespace (and not attached):
  [1] fs_1.5.2            sf_1.0-8            usethis_2.1.6      
@@ -368,15 +371,16 @@ loaded via a namespace (and not attached):
 [49] Rcpp_1.0.8.3        munsell_0.5.0       fansi_1.0.3        
 [52] gdtools_0.2.4       lifecycle_1.0.1     stringi_1.7.6      
 [55] yaml_2.3.5          grid_4.2.1          parallel_4.2.1     
-[58] crayon_1.5.1        haven_2.5.1         hms_1.1.2          
-[61] knitr_1.40          pillar_1.8.1        wk_0.6.0           
-[64] reprex_2.0.2        glue_1.6.2          evaluate_0.16      
-[67] modelr_0.1.9        vctrs_0.4.1         tzdb_0.3.0         
-[70] selectr_0.4-2       Rttf2pt1_1.3.10     cellranger_1.1.0   
-[73] gtable_0.3.1        assertthat_0.2.1    xfun_0.31          
-[76] broom_1.0.1         e1071_1.7-11        ragg_1.2.2         
-[79] class_7.3-20        googledrive_2.0.0   gargle_1.2.0       
-[82] units_0.8-0         ellipsis_0.3.2     </code></pre>
+[58] crayon_1.5.1        haven_2.5.1         gridtext_0.1.4     
+[61] hms_1.1.2           knitr_1.40          pillar_1.8.1       
+[64] markdown_1.1        wk_0.6.0            reprex_2.0.2       
+[67] glue_1.6.2          evaluate_0.16       modelr_0.1.9       
+[70] vctrs_0.4.1         tzdb_0.3.0          selectr_0.4-2      
+[73] Rttf2pt1_1.3.10     cellranger_1.1.0    gtable_0.3.1       
+[76] assertthat_0.2.1    xfun_0.31           broom_1.0.1        
+[79] e1071_1.7-11        ragg_1.2.2          class_7.3-20       
+[82] googledrive_2.0.0   gargle_1.2.0        units_0.8-0        
+[85] ellipsis_0.3.2     </code></pre>
 </div>
 </div>
 

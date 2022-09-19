@@ -14,6 +14,7 @@ library(showtext)
 library(urbnmapr)
 library(rsvg)
 library(ggrepel)
+library(ggtext)
 ```
 
 ```{r, warning=FALSE, message=FALSE}
@@ -69,18 +70,19 @@ pellPlot <- pellSF %>%
           axis.title.y = element_blank(),
           axis.text.y = element_blank(),
           axis.ticks.y = element_blank(),
-          axis.line.x = element_blank()) +
+          axis.line.x = element_blank(),
+          plot.subtitle = element_markdown()) +
+    scale_x_continuous(expand = c(0, 0)) +
+    scale_y_continuous(expand = c(0, 0)) +
     scale_fill_continuous(high = "#132B43", 
                           low = "#56B1F7", 
                           name = "Total Pell Grant Funding (Million USD$)")  +
     labs(title = "2017 Pell Grants by State",
-         subtitle = "States are coloured by total funding recieved and labeled with the number of 
-recipients, counted in thousands.")
+         subtitle = "States are coloured by <span style='color:#132B43;'>total funding recieved</span> and labeled with the <span style='color:#AA336A;'>number of <br>recipients</span>, counted in thousands.")
 
 tmp <- tempfile()
 ggsave(tmp, pellPlot, device = "svg", width = 7, height = 7)
 rsvg_png(tmp, "Out/2022-08-30.png")
-
 ```
 
 ![Final Plot](Out/2022-08-30.png)
