@@ -1,5 +1,7 @@
 ---
 title: "2022 Week 32: Ferris Wheels"
+execute: 
+  freeze: auto
 ---
 
 ## Setup

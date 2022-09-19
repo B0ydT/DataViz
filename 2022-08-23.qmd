@@ -1,5 +1,7 @@
 ---
 title: "2022 Week 34: Moore's Law"
+execute: 
+  freeze: auto
 ---
 
 ## Setup
