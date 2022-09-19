@@ -4,8 +4,6 @@ title: "DataViz Portfolio"
 
 This page is a repository of data visualisations I have created. Each visualisation contained in this portfolio links to a page containing the code used to create it.
 
-My goal with TidyTuesday each week is to learn something new, and consequently I usually end up focusing on one or two parts of the workflow. Data wrangling may be incomplete, overcomplicated, or even totally ignored if it suits my goals for the week; the resulting figures should not be taken too seriously. I reserve the right to go back and tinker with these figures without warning.
-
 ::: {.column-screen-inset}
 
 ::: {layout="[[50,-0.5,50,-0.5,50], [50,-0.5,50,-0.5,50]]"}
