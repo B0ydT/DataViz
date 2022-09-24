@@ -96,7 +96,7 @@ legoPlot <- lego |>
     xlab("Year of Release") +
     ylab("Number of Parts") +
     ggtitle("The Biggest and Best LEGO Sets (1949-2021)",
-            "A timeline of LEGO sets that set new recods for part numbers.
+            "A timeline of LEGO sets that set new records for part numbers.
 Data from rebrickable.")
 
 tmp <- tempfile()
