@@ -5,7 +5,6 @@ project:
 book:
   title: "DataViz Portfolio"
   author: "Boyd Tarlinton"
-  number-sections: false
   chapters:
     - index.qmd
     - part: "TidyTuesday Projects"
