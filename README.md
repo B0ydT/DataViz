@@ -1,3 +1,3 @@
 # DataViz Portfolio by Boyd Tarlinton
 
-Source for https://b0ydt.github.io/DataViz/
+Source for http://dataviz.tarlinton.au/
